@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function App() {
+function App() {
   return (
     <div>
       <H1>Steel Country Home Restoration</H1>
     </div>
   )
 }
-App();
+export default App;
