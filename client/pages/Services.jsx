@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"; // Import the useEffect and useState hooks
 
-const API = "http://localhost:3000/services";
+const API = "http://localhost:3000/api/services";
 
 export default function Services() {
   //Create a services state variable

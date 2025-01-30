@@ -18,7 +18,7 @@ connectDB()
 const serviceController = require('./controllers/service-routes.js')
 
 //* Routes
-app.use('/services', serviceController)
+app.use('/api/services', serviceController)
 
 //routes
 app.get('/', (req, res) => {
