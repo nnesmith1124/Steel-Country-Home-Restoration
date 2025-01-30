@@ -3,7 +3,7 @@ const router = require('express').Router() // Import express and create a new ro
 const Service = require('../models/service') // Import the room model
 //const authenticateToken = require("../middleware/authenticateToken"); // Import the authenticateToken middleware
 
-//POST - 'localhost:3000/services' - create a new service - Admin only
+//POST - 'localhost:3000/api/services' - create a new service - Admin only
 router.post(
   '/',
   /* authenticateToken ,*/ async (req, res) => {
@@ -36,7 +36,7 @@ router.post(
   }
 )
 
-//GET All - 'localhost:3000/services' - display all services - Any User
+//GET All - 'localhost:3000/api/services' - display all services - Any User
 router.get('/', async (req, res) => {
   try {
     const services = await Service.find()
@@ -61,7 +61,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-//GET one - 'localhost:3000/services/:id' - display one service by ID - Any User
+//GET one - 'localhost:3000/api/services/:id' - display one service by ID - Any User
 router.get('/:_id', async (req, res) => {
   try {
     //get the service ID from the request params
@@ -88,7 +88,7 @@ router.get('/:_id', async (req, res) => {
   }
 })
 
-//Update one - 'localhost:3000/services/:id' - update a service by ID - Any User
+//Update one - 'localhost:3000/api/services/:id' - update a service by ID - Any User
 router.put('/:_id', async (req, res) => {
   try {
     //get the service ID from the request params
@@ -114,7 +114,7 @@ router.put('/:_id', async (req, res) => {
   }
 })
 
-//Delete one - 'localhost:3000/services/:id' - delete a service by ID - Any User
+//Delete one - 'localhost:3000/api/services/:id' - delete a service by ID - Any User
 router.delete('/:_id', async (req, res) => {
   try {
     //get the service ID from the request params
@@ -123,9 +123,14 @@ router.delete('/:_id', async (req, res) => {
     //find service by ID and delete it
     const serviceToBeDeleted = await Service.findByIdAndDelete(_id)
 
+    if (!serviceToBeDeleted) {
+      return res.status(400).json({
+        message: 'No service was found'
+      })
+    }
     res.status(200).json({
       result: serviceToBeDeleted,
-      message: 'Service was deleted successfully.'
+      message: `Service "${serviceToBeDeleted.name}" was deleted successfully.`
     })
   } catch (error) {
     //return a 500 status code and an error message
