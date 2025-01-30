@@ -34,25 +34,42 @@ export default function ServicesAdmin() {
       <h1>Services - Admin Dashboard</h1>
 
       <div className="services-container">
-        <table className="table-auto border-collapse border border-gray-400 w-full">
+        <table className="table">
           <thead>
             <tr className="services-table">
-              <th className="serviceId">ID</th>
-              <th className="service-name">Name</th>
-              <th className="service-description">Description</th>
-              <th className="service-image">Image URL</th>
-              <th className="actions">Actions</th>
+              <th className="serviceId" width={100} align="center">
+                ID
+              </th>
+              <th className="service-name" width={100}>
+                Name
+              </th>
+              <th className="service-description" width={400}>
+                Description
+              </th>
+              <th className="service-image">Image</th>
+              <th className="actions" width={200}>
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
             {services.map((service, index) => (
               <tr key={service._id} className="serviceId">
-                <td className="serviceId">{index + 1}</td>
+                <td className="serviceId" align="center">
+                  {index + 1}
+                </td>
                 <td className="service-name">{service.name}</td>
                 <td className="service-description">{service.description}</td>
-                <td className="service-image">{service.imageUrl}</td>
+                <td className="service-image">
+                  <img src={service.imageUrl} alt={service.name} width="300" />
+                </td>
                 <td className="actions">
                   <button onClick={() => deleteService(index)}>Delete</button>
+                  <button
+                    onClick={() => alert(`Edit service: ${service.name}`)}
+                  >
+                    Edit
+                  </button>
                 </td>
               </tr>
             ))}
