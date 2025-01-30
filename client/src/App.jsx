@@ -1,10 +1,11 @@
 import React from "react";
+import Services from "../pages/Services";
 
 export default function App() {
   return (
     <div>
-      <H1>Steel Country Home Restoration</H1>
+      <h1>Steel Country Home Restoration</h1>
+      <Services />
     </div>
   );
 }
-App();
