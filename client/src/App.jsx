@@ -9,8 +9,11 @@ import Contact from "./pages/contact";
 import Inquiry from "./components/inquiry";
 import Login from "./pages/login";
 
+import Services from "../components/Services";
+import ServicesAdmin from "../components/ServicesAdmin";
 
-function App() {
+
+export default function App() {
     return (
         <Router>
             <Navbar />
@@ -33,6 +36,12 @@ function App() {
                 />
             </Routes>
         </Router>
-    );
+    <div>
+      <h1>Steel Country Home Restoration</h1>
+      <Services />
+      <ServicesAdmin />
+    </div>
+
+);
 }
-export default App;
+
