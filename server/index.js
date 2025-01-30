@@ -7,7 +7,6 @@ const port = process.env.PORT || 8080;
 const root = ReactDom.createRoot(document.getElementById('root'));
 
 
-
 //inquiry schema
 const inquirySchema = new mongoose.Schema({
     name: String,
