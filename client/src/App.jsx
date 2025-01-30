@@ -1,6 +1,6 @@
 import React from "react";
-import Services from "../pages/Services";
-import ServicesAdmin from "../pages/ServicesAdmin";
+import Services from "../components/Services";
+import ServicesAdmin from "../components/ServicesAdmin";
 
 export default function App() {
   return (
