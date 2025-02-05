@@ -4,11 +4,13 @@ const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const app = express();
-const port = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 const SALT_ROUNDS = 10;
+const cors = require('cors')
 require('dotenv').config();
 
 app.use(express.json());
+app.use(cors())
 
 const Login = require("./models/login.schema.js");
 
@@ -48,7 +50,7 @@ mongoose.connect(process.env.MONGO_DB)
     } catch (error) {
         console.log(error);
     }
-}
+ }
 
 //inquiry schema
 const inquirySchema = new mongoose.Schema({
@@ -57,21 +59,26 @@ const inquirySchema = new mongoose.Schema({
   phone: String,
   address: String,
   service: String,
-  message: String,
+   message: String,
 });
 
 //inquiry model
-const Inquiry = mongoose.model("Inquiry", inquirySchema);
+const Inquiry = mongoose.model('Inquiry', inquirySchema)
 
+//connect to DB
+const connectDB = require('./config/database.js')
+connectDB()
 
-//routes
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+//* Imports for controllers
+const serviceController = require('./controllers/service-routes.js')
+
+//* Routes
+app.use('/api/services', serviceController)
+
 
 app.post("/api/register", async(req, res) => {
   const { username, password } = req.body;
-
+  
   // validate the request body
   if (!username || !password) {
     return res.status(400).json({
@@ -148,7 +155,6 @@ app.post("/api/login", async (request, response) => {
   }
 })
 
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
