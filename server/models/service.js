@@ -1,24 +1,22 @@
 const mongoose = require('mongoose')
 
-//Define the Service Schema
 const serviceSchema = new mongoose.Schema(
   {
     name: {
-      type: String,
-      required: true
+      type: String, // Set the type of the name field to String
+      required: true // Set the required field to true
     },
     description: {
-      type: String,
-      required: true
+      type: String, // Set the type of the description field to String
+      required: true // Set the required field to true
     },
     imageUrl: {
       type: String,
       required: true
     }
   },
-  { timestamps: true } //add createdAt and updatedAt timestamps
-)
+  { timestamps: true }
+) // Adds createdAt & updatedAt timestamps
 
 //Define model
 module.exports = mongoose.model('Service', serviceSchema)
-//export the service model

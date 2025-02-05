@@ -1,14 +1,26 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // import the BrowserRouter, Routes, and Route components from react-router-dom
-
-import Services from "../pages/Services"; // import the Services page
+import "./App.css";
+// import Navbar from "./Components/Navbar/NavbarElements";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Contact from "./pages/Contact";
+import Inquiry from "./pages/Inquiry";
+import Login from "./pages/Login";
 
 export default function App() {
   return (
-    <div>
-      <h1>Steel Country Home Restoration</h1>
-      <Services />
-    </div>
+    <Router>
+      {/* <Navbar /> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/inquiry" element={<Inquiry />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
-App();

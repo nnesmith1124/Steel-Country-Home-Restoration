@@ -1,141 +1,139 @@
-const router = require('express').Router()
-const Service = require('../models/service')
+const router = require('express').Router() // Import express and create a new router
 
-//POST - 'localhost:000/services - create new service
-router.post('/', async (req, res) => {
-  try {
-    //Get the service name, description and image URL from the request body
-    const { name, description, imageUrl } = req.body
+const Service = require('../models/service') // Import the room model
+//const authenticateToken = require("../middleware/authenticateToken"); // Import the authenticateToken middleware
 
-    //Request Validation
-    if (!name || !description || !imageUrl) {
-      return res.status(401).json({
-        message: 'All fields are required!'
+//POST - 'localhost:3000/api/services' - create a new service - Admin only
+router.post(
+  '/',
+  /* authenticateToken ,*/ async (req, res) => {
+    try {
+      //get request body
+      const { name, description, imageUrl } = req.body
+
+      if (!name || !description || !imageUrl) {
+        // If any of the fields are missing
+        return res.status(401).json({
+          message: 'All Fields are Required!' // Return a 401 status code and a message
+        })
+      }
+      //create a new service object
+      const newService = new Service({ name, description, imageUrl })
+
+      //save new service to database
+      await newService.save()
+
+      res.status(200).json({
+        result: newService,
+        message: 'Service was created successfully'
+      })
+    } catch (error) {
+      //return a 500 status code and an error message
+      res.status(500).json({
+        Error: error.message
       })
     }
+  }
+)
 
-    //create a new service using the input data
-    const newService = new Service({
-      name,
-      description,
-      imageUrl
+//GET All - 'localhost:3000/api/services' - display all services - Any User
+router.get('/', async (req, res) => {
+  try {
+    const services = await Service.find()
+    //get all services from database
+
+    if (services.length === 0) {
+      //no services are found in the database
+      return res.status(400).json({
+        message: 'No Services are found!'
+      })
+    }
+    res.status(200).json({
+      //return a 200 status code and the services
+      result: services,
+      message: 'All services are retrieved successfully' //return a success message
     })
-
-    //save the new service to database
-    await newService.save()
-
-    //return a 200 status code and a success message
-    res
-      .status(200)
-      .json({ result: newService, message: 'Service was created successfully' })
   } catch (error) {
+    //return a 500 status code and an error message
     res.status(500).json({
       Error: error.message
     })
   }
 })
 
-//GET All- 'localhost:3000/services - display all services
-router.get('/', async (req, res) => {
-  try {
-    //get all services in the database
-    const services = await Service.find()
-
-    //if no services are found
-    if (services.length === 0) {
-      return res.status(400).json({
-        message: 'No Services are found!'
-      })
-    }
-
-    res.status(200).json({
-      result: services,
-      message: 'All services are retrieved successfully'
-    })
-  } catch (error) {
-    res.status(500).json({ Error: error.message })
-  }
-})
-
-//GET One - 'localhost:3000/services - display One service by ID
+//GET one - 'localhost:3000/api/services/:id' - display one service by ID - Any User
 router.get('/:_id', async (req, res) => {
   try {
     //get the service ID from the request params
     const { _id } = req.params
-    //get the selected service fom the database
-    const serviceSelected = await Service.findById(_id)
 
-    //if no services are found
-    if (!serviceSelected) {
+    const service = await Service.findById(_id)
+
+    //if no service matches the given ID
+    if (!service) {
       return res.status(400).json({
-        message: 'Service was not found!'
+        message: 'Service not found!'
       })
     }
 
     res.status(200).json({
-      result: serviceSelected,
+      result: service,
       message: 'Service was retrieved successfully'
     })
   } catch (error) {
-    res.status(500).json({ Error: error.message })
+    //return a 500 status code and an error message
+    res.status(500).json({
+      Error: error.message
+    })
   }
 })
 
-//PUT - 'localhost:3000/services/:id - update service by ID - ADMIN ONLY
+//Update one - 'localhost:3000/api/services/:id' - update a service by ID - Any User
 router.put('/:_id', async (req, res) => {
   try {
     //get the service ID from the request params
     const { _id } = req.params
 
-    //get the updated service information from the request body
+    //get the updated service fields from the request body
     const { name, description, imageUrl } = req.body
 
-    //create an updated service object
     const updatedService = { name, description, imageUrl }
 
-    //find the service by ID in the database and then save the changes to the database
-    const serviceToBeUpdated = await Service.findByIdAndUpdate(
-      _id,
-      updatedService
-    )
+    //find the service and update its fields
+    await Service.findByIdAndUpdate(_id, updatedService)
 
-    if (!serviceToBeUpdated) {
-      return res.status(400).json({
-        message: 'Service not found!'
-      })
-    }
-    //return a success message
     res.status(200).json({
       result: updatedService,
-      message: 'Service was updated successfully!'
+      message: 'Service was updated!'
     })
   } catch (error) {
+    //return a 500 status code and an error message
     res.status(500).json({
       Error: error.message
     })
   }
 })
 
-//DELETE - 'localhost:3000/services/:id - delete service by ID
+//Delete one - 'localhost:3000/api/services/:id' - delete a service by ID - Any User
 router.delete('/:_id', async (req, res) => {
   try {
     //get the service ID from the request params
     const { _id } = req.params
 
-    const serviceToBeDeleted = await Service.findByIdAndDelete({ _id })
+    //find service by ID and delete it
+    const serviceToBeDeleted = await Service.findByIdAndDelete(_id)
 
-    //if service does not exist
     if (!serviceToBeDeleted) {
-      return res.status(401).json({
-        message: 'Service was not found!'
+      return res.status(400).json({
+        message: 'No service was found'
       })
     }
-
     res.status(200).json({
       result: serviceToBeDeleted,
-      message: 'Service was deleted successfully'
+      message: `Service "${serviceToBeDeleted.name}" was deleted successfully.`
     })
   } catch (error) {
+    //return a 500 status code and an error message
     res.status(500).json({
       Error: error.message
     })
