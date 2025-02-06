@@ -1,7 +1,7 @@
 const router = require('express').Router() // Import express and create a new router
 
 const Service = require('../models/service') // Import the room model
-//const authenticateToken = require("../middleware/authenticateToken"); // Import the authenticateToken middleware
+const authenticateToken = require('../middleware/authenticateToken') // Import the authenticateToken middleware
 
 //POST - 'localhost:3000/api/services' - create a new service - Admin only
 router.post(
