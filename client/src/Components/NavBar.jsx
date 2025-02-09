@@ -10,7 +10,7 @@ export default function NavBar() {
   return (
     <div class="relative">
       {/* Logo */}
-      <div class="fixed top-0 left-10">
+      <div class="absolute top-0 left-10">
         <img src="../assets/logo-2.jpg" alt="logo" width={200} height={200} />
       </div>
 
