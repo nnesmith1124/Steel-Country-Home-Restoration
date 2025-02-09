@@ -1,6 +1,7 @@
 import React from "react";
-
+import { FaBars, FaHome } from "react-icons/fa";
 import { useState } from "react"; //to get drop down menu
+import "./Navigation.css";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,27 +19,11 @@ export default function NavBar() {
         <div className="container mx-auto flex justify-between items-center">
           <div></div>
           {/* Hamburger Menu (Mobile) */}
-          {/* This button appears only on mobile because of the lg:hidden class (which hides the button on large screens). */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="lg:hidden text-white focus:outline-none"
           >
-            {/* Hamburger Icon */}
-            {/* SVG icon representing a hamburger (three horizontal lines). It's styled to be 6x6 units wide and high (w-6 h-6) */}
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <FaBars className="w-6 h-6" />
           </button>
           {/* Navigation Links */}
           {/* lg:flex: On large screens, links appear as flex container(displayed horizontally).*/}
@@ -58,10 +43,13 @@ export default function NavBar() {
               menuOpen ? "block" : "hidden"
             }`}
           >
-            <li className="hover:text-gray-400 text-2xl">
-              <a href="/">Home</a>
+            {/* Home with Icon */}
+            <li className="hover:text-black text-2xl flex items-center">
+              <a href="/" className="flex items-center gap-2">
+                <FaHome /> Home
+              </a>
             </li>
-            {/* FIXED Services Dropdown */}
+            {/* Services Dropdown */}
             <li
               className="relative text-2xl "
               onMouseEnter={() => setDropdownOpen(true)}
