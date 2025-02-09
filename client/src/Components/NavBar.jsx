@@ -2,8 +2,6 @@ import React from "react";
 
 import { useState } from "react"; //to get drop down menu
 
-import "./Navigation.css";
-
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
