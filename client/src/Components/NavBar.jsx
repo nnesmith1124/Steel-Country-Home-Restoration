@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBars, FaHome } from "react-icons/fa";
-import { useState } from "react"; //to get drop down menu
+
 import "./Navigation.css";
 
 export default function NavBar() {
@@ -55,12 +55,18 @@ export default function NavBar() {
               onMouseEnter={() => setDropdownOpen(true)}
             >
               {/* Services Button */}
-              <a
+              {/* <a
                 className="focus:outline-none hover:text-black text-2xl"
                 href="/services"
               >
                 Services ▼
-              </a>
+              </a> */}
+              <button
+                className="focus:outline-none hover:text-black text-2xl flex justify-between w-full lg:w-auto"
+                onClick={() => setDropdownOpen(!dropdownOpen)} // Mobile Click
+              >
+                Services ▼
+              </button>
 
               {/* Dropdown Menu - Ensures No Flickering */}
               {/* absolute left-0 mt-1: Positioned absolutely below the "Services" button with a top margin. */}
