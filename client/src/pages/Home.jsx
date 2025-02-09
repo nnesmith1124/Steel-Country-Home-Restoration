@@ -3,6 +3,7 @@ import React from "react";
 import NavBar from "../Components/NavBar"; //Hala
 //import NavBar from "../Components/Navigation"; //Hala
 import Slideshow from "../Components/Slideshow";
+import Footer from "../Components/Footer";
 
 export default function Home() {
   return (
@@ -25,6 +26,11 @@ export default function Home() {
 
       <h1 className="text-5xl font-bold text-center my-8">Tips</h1>
       <Slideshow />
+
+      <p>
+        <br />
+      </p>
+      <Footer />
     </div>
   );
 }
