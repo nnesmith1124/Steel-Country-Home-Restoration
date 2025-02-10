@@ -1,18 +1,15 @@
 import React from "react";
+import NavBar from "../Components/NavBar"; //Hala
 import Footer from "../Components/Footer";
+import ServicesAdmin from "../components-services/ServicesAdmin";
 
-import ServicesList from "../components-services/Services";
-
-import NavBar from "../Components/NavBar";
-
-export default function Services() {
+export default function Admin() {
   return (
     <div>
       <NavBar />
-
       <h1>Steel Country Home Restoration</h1>
-      <ServicesList />
 
+      <ServicesAdmin />
       <p>
         <br />
       </p>
