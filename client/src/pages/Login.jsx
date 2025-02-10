@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const LoginPage = () => {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,7 +16,7 @@ const LoginPage = () => {
       });
 
       if (response.data.success) {
-        console.log("Login successsful:", response.data);
+        console.log("Login successful:", response.data);
       } else {
         setErrorMessage(response.data.message);
       }
@@ -24,13 +24,11 @@ const LoginPage = () => {
       setErrorMessage("Something went wrong. Please try again later.");
     }
   };
-};
 
-export default function Login() {
   return (
     <div className="login-container">
       <h2>Login</h2>
-      {errorMessage && <p classname="error"> {errorMessage}</p>}
+      {errorMessage && <p className="error">{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username</label>

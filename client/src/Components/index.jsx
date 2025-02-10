@@ -1,31 +1,31 @@
 import React from 'react'
 import {
-  nav,
-  navList,
-  bars,
-  navMenu,
-  navBtn,
-  navBtnLink
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink
 } from './NavbarElements'
 
 const Navbar = () => {
   return (
     <>
-      <nav>
-        <bars />
-        <navMenu>
+      <Nav>
+        <Bars />
+        <NavMenu>
           {/* // logo home link  */}
-          {/* <navlink to='/'>Home</navlink> */}
-          <navlink to='/about'>About</navlink>
-          {/* <navlink to='/services'>Contact</navlink>
-          <navlink to='/inquiry'>Inquiry</navlink>
-          <navlink to='/contact'>Contact</navlink>
-          <navlink to='/login'>Login</navlink> */}
-        </navMenu>
-        {/* <navBtn>
-          <navBtnLink to='/login'>Login</navBtnLink>
-        </navBtn> */}
-      </nav>
+          <NavLink to='/'>Home</NavLink>
+          <NavLink to='/about'>About</NavLink>
+          <NavLink to='/services'>Contact</NavLink>
+          <NavLink to='/inquiry'>Inquiry</NavLink>
+          <NavLink to='/contact'>Contact</NavLink>
+          <NavLink to='/login'>Login</NavLink>
+        </NavMenu>
+        <NavBtn>
+          <NavBtnLink to='/login'>Login</NavBtnLink>
+        </NavBtn>
+      </Nav>
     </>
   )
 }
