@@ -1,0 +1,16 @@
+npm install react-icons
+npm install styled-components
+
+npm remove react-icon
+npm remove style-components
+
+npm install tailwindcss @tailwindcss/vite
+npx tailwindcss init -p
+
+npm i --save @fortawesome/fontawesome-svg-core
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/react-fontawesome@latestt
+npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
+
+
+npm install react-slick slick-carousel

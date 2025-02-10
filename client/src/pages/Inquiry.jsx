@@ -1,5 +1,11 @@
-import React from 'react'
+import React from "react";
+import NavBar from "../Components/NavBar";
 
-export default function inquiry () {
-  return <div>inquiry</div>
+export default function Inquiry() {
+  return (
+    <div>
+      <NavBar />
+      <h1>Inquiry Form Page </h1>
+    </div>
+  );
 }
