@@ -10,7 +10,9 @@ export default function Services() {
     <div>
       <NavBar />
 
-      <h1>Steel Country Home Restoration</h1>
+      <h1 className="text-5xl font-bold text-center my-8">
+        Steel Country Home Restoration
+      </h1>
       <ServicesList />
 
       <p>
