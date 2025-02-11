@@ -51,65 +51,15 @@ export default function NavBar() {
                 <FaHome /> Home
               </a>
             </li>
-            {/* Services Dropdown */}
-            <li
-              className="relative text-2xl "
-              onMouseEnter={() => setDropdownOpen(true)}
-            >
-              {/* Services Button */}
-              {/* <a
-                className="focus:outline-none hover:text-black text-2xl"
-                href="/services"
-              >
-                Services ▼
-              </a> */}
-              <button
-                className="focus:outline-none hover:text-black text-2xl flex justify-between w-full lg:w-auto"
-                onClick={() => setDropdownOpen(!dropdownOpen)} // Mobile Click
-              >
-                Services ▼
-              </button>
 
-              {/* Dropdown Menu - Ensures No Flickering */}
-              {/* absolute left-0 mt-1: Positioned absolutely below the "Services" button with a top margin. */}
-              {/* w-48: Sets the width of the dropdown menu to 48 units. */}
-              {/* bg-white text-black: Sets background to white and text color to black. */}
-              {/* shadow-lg: Adds a large shadow around the dropdown. */}
-              {/* rounded-md: Rounds the corners of the dropdown. */}
-              {/* The class toggles based on the state of dropdownOpen: */}
-              {/* opacity-100 visible: When dropdownOpen is true, the dropdown is visible. */}
-              {/* opacity-0 invisible pointer-events-none: When dropdownOpen is false, it becomes invisible and non-interactive. */}
-              <div
-                className={`absolute left-0 mt-1 w-48 bg-white text-black shadow-lg rounded-md transition-opacity duration-200 ${
-                  dropdownOpen
-                    ? "opacity-100 visible"
-                    : "opacity-0 invisible pointer-events-none"
-                }`}
-                onMouseLeave={() => setDropdownOpen(false)}
-              >
-                <ul className="py-2">
-                  {/* px-4 py-2: Padding on the left, right, top, and bottom of each list item. */}
-                  {/* hover:bg-gray-200: Changes the background color on hover. */}
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <a href="/roofing">Roofing</a>
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <a href="/gutters">Gutters</a>
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-200">
-                    <a href="/painting">Painting</a>
-                  </li>
-                </ul>
-              </div>
+            <li className="hover:text-black text-2xl">
+              <a href="/admin/services">Services</a>
             </li>
             <li className="hover:text-black text-2xl">
-              <a href="/about">About</a>
+              <a href="/admin/inquiries">Inquiries</a>
             </li>
             <li className="hover:text-black text-2xl">
-              <a href="/contact">Contact</a>
-            </li>
-            <li className="hover:text-black text-2xl font-bold">
-              <a href="/inquiry">Get A Free Estimate</a>
+              <a href="/admin/logout">Logout</a>
             </li>
           </ul>
         </div>
