@@ -8,16 +8,18 @@ export default function NavBar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <div class="relative">
+    <div className="relative">
       {/* Logo */}
-      <div class="absolute top-0 left-10">
-        <img src="../assets/logo-2.jpg" alt="logo" width={200} height={200} />
+      <div className="absolute top-0 left-10 w-1/6 h-1/6">
+        <img
+          src="../assets/logo-2.jpg"
+          alt="logo" /*width={200} height={200}*/
+        />
       </div>
 
       <nav className="bg-[#4a9cd3] p-4">
         {/* set the background color and p-4: Adds padding to all sides of the navbar (padding of 1rem). */}
-        <div className="container mx-auto flex justify-between items-center">
-          <div></div>
+        <div className="container mx-auto flex flex-row-reverse justify-between items-center">
           {/* Hamburger Menu (Mobile) */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -107,7 +109,7 @@ export default function NavBar() {
               <a href="/contact">Contact</a>
             </li>
             <li className="hover:text-black text-2xl font-bold">
-              <a href="/contact">Get A Free Estimate</a>
+              <a href="/inquiry">Get A Free Estimate</a>
             </li>
           </ul>
         </div>
@@ -115,41 +117,3 @@ export default function NavBar() {
     </div>
   );
 }
-
-/* <div className="navigation-component">
-      <div className="navigation-container">
-        <div className="logo-container">
-          <img src="../assets/logo.jpg" alt="logo" width={200} height={200} />
-        </div>
-        <nav>
-          <ul className="nav-menu">
-            <li>
-              <a className="navitem" href="/">
-                Home
-              </a>
-            </li>
-            <li>
-              <a className="navitem" href="/about">
-                About
-              </a>
-            </li>
-            <li>
-              <a className="navitem" href="/contact">
-                Contact
-              </a>
-            </li>
-            <li>
-              <a className="navitem" href="/services">
-                Services
-              </a>
-            </li>
-            <li>
-              <a className="navitem" href="/inquiry">
-                Inquiry
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
- */

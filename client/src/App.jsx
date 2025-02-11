@@ -8,6 +8,7 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Inquiry from "./pages/Inquiry";
 import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 import Gutters from "./components-services/Gutters";
 import Roofing from "./components-services/Roofing";
 import Painting from "./components-services/Painting";
@@ -26,6 +27,8 @@ export default function App() {
         <Route path="/gutters" element={<Gutters />} />
         <Route path="/roofing" element={<Roofing />} />
         <Route path="/painting" element={<Painting />} />
+        {/* Protected Routes */}
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );
