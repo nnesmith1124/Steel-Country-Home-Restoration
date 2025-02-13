@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { FaBars, FaHome } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import navigation hook
 
 //import "./Navigation.css";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate(); // Initialize navigation
 
   return (
     <div className="relative h-[15vh]">
@@ -22,7 +24,10 @@ export default function NavBar() {
         <div className="container mx-auto flex flex-row-reverse justify-between items-center ">
           {/* Hamburger Menu (Mobile) */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => {
+              setMenuOpen(!menuOpen);
+              if (!menuOpen) setDropdownOpen(false); // Reset dropdown when closing menu
+            }}
             className="lg:hidden text-white focus:outline-none"
           >
             <FaBars className="w-6 h-6" />
@@ -41,7 +46,7 @@ export default function NavBar() {
           {/* shadow-lg lg:shadow-none: Adds a large shadow to the mobile menu (shadow-lg), but no shadow on large screens (lg:shadow-none). */}
           {/* transition-all duration-300 ease-in-out: Smooth transition for all property changes, lasting 300ms with ease-in-out timing. */}{" "}
           <ul
-            className={`lg:flex items-center space-x-6 text-white absolute lg:relative top-16 lg:top-0 left-0 w-full lg:w-auto bg-gray-800 lg:bg-transparent p-4 lg:p-0 shadow-lg lg:shadow-none transition-all duration-300 ease-in-out ${
+            className={`lg:flex items-center space-x-6 text-white absolute lg:relative top-16 lg:top-0 right-0 w-full lg:w-auto bg-gray-800 lg:bg-transparent p-4 lg:p-0 shadow-lg lg:shadow-none transition-all duration-300 ease-in-out ${
               menuOpen ? "block" : "hidden"
             }`}
           >
@@ -53,8 +58,9 @@ export default function NavBar() {
             </li>
             {/* Services Dropdown */}
             <li
-              className="relative text-2xl "
+              className="relative text-2xl"
               onMouseEnter={() => setDropdownOpen(true)}
+              //onMouseLeave={() => setDropdownOpen(false)} // Closes dropdown when mouse leaves
             >
               {/* Services Button */}
               {/* <a
@@ -65,12 +71,18 @@ export default function NavBar() {
               </a> */}
               <button
                 className="focus:outline-none hover:text-black text-2xl flex justify-between w-full lg:w-auto"
-                onClick={() => setDropdownOpen(!dropdownOpen)} // Mobile Click
+                onClick={() => {
+                  if (menuOpen) {
+                    setDropdownOpen(!dropdownOpen); // Toggle dropdown in mobile mode
+                  } else {
+                    navigate("/services"); // Navigate to /services on desktop
+                  }
+                }}
               >
                 Services ▼
               </button>
 
-              {/* Dropdown Menu - Ensures No Flickering */}
+              {/* Dropdown Menu */}
               {/* absolute left-0 mt-1: Positioned absolutely below the "Services" button with a top margin. */}
               {/* w-48: Sets the width of the dropdown menu to 48 units. */}
               {/* bg-white text-black: Sets background to white and text color to black. */}
@@ -80,11 +92,20 @@ export default function NavBar() {
               {/* opacity-100 visible: When dropdownOpen is true, the dropdown is visible. */}
               {/* opacity-0 invisible pointer-events-none: When dropdownOpen is false, it becomes invisible and non-interactive. */}
               <div
-                className={`absolute left-0 mt-1 w-48 bg-white text-black shadow-lg rounded-md transition-opacity duration-200 ${
-                  dropdownOpen
-                    ? "opacity-100 visible"
-                    : "opacity-0 invisible pointer-events-none"
-                }`}
+                // className={`lg:absolute lg:left-0 lg:mt-1 bg-white text-black w-fit shadow-lg rounded-md transition-opacity duration-200
+                //   ${
+                //     dropdownOpen || menuOpen
+                //       ? "opacity-100 visible"
+                //       : "opacity-0 invisible pointer-events-none lg:pointer-events-auto"
+                //   }
+                //   lg:opacity-100 lg:visible lg:pointer-events-auto lg:block`}
+
+                className={`lg:absolute lg:left-0 lg:mt-1 lg:w-40 w-fit bg-white text-black shadow-lg rounded-md transition-opacity duration-200 
+      ${
+        dropdownOpen || menuOpen
+          ? "opacity-100 visible pointer-events-auto"
+          : "opacity-0 invisible pointer-events-none"
+      }`}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
                 <ul className="py-2">

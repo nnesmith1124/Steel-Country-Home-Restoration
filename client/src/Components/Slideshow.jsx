@@ -49,7 +49,7 @@ export default function Slideshow() {
   };
 
   return (
-    <div className="">
+    <div className="mb-30">
       <Slider {...settings}>
         {images.map((src, index) => (
           <div key={index} className="">

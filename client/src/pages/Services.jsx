@@ -11,7 +11,7 @@ export default function Services() {
       <NavBar />
 
       <h1 className="text-5xl font-bold text-center my-8">
-        Steel Country Home Restoration
+        List of Available Services
       </h1>
       <ServicesList />
 
