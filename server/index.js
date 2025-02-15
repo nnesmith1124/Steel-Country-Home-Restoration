@@ -11,18 +11,7 @@ const PORT = process.env.PORT || 8080
 app.use(express.json())
 app.use(cors())
 
-//inquiry schema
-const inquirySchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  phone: String,
-  address: String,
-  service: String,
-  message: String
-})
 
-//inquiry model
-const Inquiry = mongoose.model('Inquiry', inquirySchema)
 
 //connect to DB
 const connectDB = require('./config/database.js')
@@ -30,9 +19,11 @@ connectDB()
 
 //* Imports for controllers
 const serviceController = require('./controllers/service-routes.js')
+const inquiryController = require('./controllers/inquiry-routes.js')
 
 //* Routes
 app.use('/api/services', serviceController)
+app.use('/api/inquiry',inquiryController)
 
 //routes
 app.get('/', (req, res) => {

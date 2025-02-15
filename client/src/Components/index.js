@@ -30,9 +30,9 @@ const Navbar = () => {
                 <navlink  to="/contact" >
                 Contact
                 </navlink>
-                <navlink to="/login" >
+                {/* <navlink to="/login" >
                 Login
-                </navlink>
+                </navlink> */}
 
 
             </navMenu>
