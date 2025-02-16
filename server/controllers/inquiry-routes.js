@@ -4,7 +4,8 @@ const router = express.Router()
 router.get('/',(req,res)=>{
 
 try{
-    const inquiry = 
+    const inquiry = document.getElementById('inquiry')
+    res.send(inquiry)
 
 }catch{
     res.status(500).json({
