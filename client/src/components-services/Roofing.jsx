@@ -2,11 +2,15 @@ import React from "react";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 
-export default function Inquiry() {
+import ServiceDisplay from "./ServiceDisplay";
+
+export default function Roofing() {
   return (
     <div>
       <NavBar />
-      <h1>Inquiry Form Page </h1>
+      <br />
+      <h1 className="text-5xl font-bold text-center my-8">Roofing</h1>
+      <ServiceDisplay serviceName="Roofing" />
 
       <p>
         <br />

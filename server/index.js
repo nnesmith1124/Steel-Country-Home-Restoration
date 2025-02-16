@@ -1,16 +1,16 @@
 const express = require('express')
 const mongoose = require('mongoose')
-require('dotenv').config()
-
+const dotenv = require('dotenv')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 const app = express()
+require('dotenv').config()
+const PORT = process.env.PORT || 8080
+const SALT_ROUNDS = 10
 const cors = require('cors')
 
-const PORT = process.env.PORT || 8080
-
-// middleware to parse JSON data from the body of the request
 app.use(express.json())
 app.use(cors())
-
 
 
 //connect to DB
@@ -19,16 +19,10 @@ connectDB()
 
 //* Imports for controllers
 const serviceController = require('./controllers/service-routes.js')
-const inquiryController = require('./controllers/inquiry-routes.js')
 
 //* Routes
 app.use('/api/services', serviceController)
-app.use('/api/inquiry',inquiryController)
 
-//routes
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

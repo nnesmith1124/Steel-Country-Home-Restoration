@@ -1,14 +1,24 @@
-import React from 'react'
+import React from "react";
+import Footer from "../Components/Footer";
 
-import Services from '../components-services/Services'
-import ServicesAdmin from '../components-services/ServicesAdmin'
+import ServicesList from "../components-services/Services";
 
-export default function services () {
+import NavBar from "../Components/NavBar";
+
+export default function Services() {
   return (
     <div>
-      <h1>Steel Country Home Restoration</h1>
-      <Services />
-      <ServicesAdmin />
+      <NavBar />
+
+      <h1 className="text-5xl font-bold text-center my-8">
+        List of Available Services
+      </h1>
+      <ServicesList />
+
+      <p>
+        <br />
+      </p>
+      <Footer />
     </div>
-  )
+  );
 }

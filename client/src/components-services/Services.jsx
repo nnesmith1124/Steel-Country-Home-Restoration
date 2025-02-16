@@ -17,16 +17,19 @@ export default function Services() {
 
   return (
     <div>
-      <h1>Services</h1>
       <ul>
         {services.map((service) => {
-          console.log(service.name); // Log the service name
+          // Render the service name inside a list item
           return (
             <li key={service._id}>
-              <h2>{service.name}</h2>
-              <p>{service.description}</p>
+              <h2 className="text-4xl font-bold text-center my-8">
+                {service.name}
+              </h2>
+              <p className="mx-20">{service.description}</p>
+              <div className="service-image p-4 place-self-center w-[40vw]">
+                <img src={service.imageUrl} alt={service.name} />
+              </div>
             </li>
-            // Render the service name inside a list item
           );
         })}
       </ul>

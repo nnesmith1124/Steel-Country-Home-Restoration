@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"; // Import the useEffect and useState hooks
+import "./ServicesAdmin.css";
 
 const API = "http://localhost:3000/api/services";
 
@@ -29,18 +30,30 @@ export default function ServicesAdmin() {
       .catch((error) => console.log(error));
   };
 
+  const addService = () => {
+    alert("Adding a new service!");
+  };
+
   return (
     <div>
-      <h1>Services - Admin Dashboard</h1>
+      <h1 className="text-5xl font-bold text-center my-8">
+        Services - Admin Dashboard
+      </h1>
 
       <div className="services-container">
-        <table className="table">
+        <table className="services-table" /*border-1 place-self-center*/>
           <thead>
-            <tr className="services-table">
-              <th className="serviceId" width={100} align="center">
+            <tr
+              className="table-title" /*place-self-center text-2xl table-auto border border-gray-500*/
+            >
+              <th
+                className="serviceId" /*border-gray-300"*/
+                width={100}
+                align="center"
+              >
                 ID
               </th>
-              <th className="service-name" width={100}>
+              <th className="service-name" /*border-gray-300"*/ width={100}>
                 Name
               </th>
               <th className="service-description" width={400}>
@@ -54,18 +67,33 @@ export default function ServicesAdmin() {
           </thead>
           <tbody>
             {services.map((service, index) => (
-              <tr key={service._id} className="serviceId">
+              <tr
+                key={service._id}
+                className="serviceId border border-gray-400"
+              >
                 <td className="serviceId" align="center">
                   {index + 1}
                 </td>
-                <td className="service-name">{service.name}</td>
-                <td className="service-description">{service.description}</td>
-                <td className="service-image">
+                <td className="service-name text-center border border-gray-400">
+                  {service.name}
+                </td>
+                <td className="service-description border border-gray-400 p-4">
+                  {service.description}
+                </td>
+                <td className="service-image border border-gray-400 p-4">
                   <img src={service.imageUrl} alt={service.name} width="300" />
                 </td>
-                <td className="actions">
-                  <button onClick={() => deleteService(index)}>Delete</button>
+                <td
+                  className="actions" /*flex justify-between items-center p-4*/
+                >
                   <button
+                    className=" action-button rounded-lg p-3 text-xl bg-[#4a9cd3]"
+                    onClick={() => deleteService(index)}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="action-button rounded-lg p-3 text-xl bg-[#4a9cd3]"
                     onClick={() => alert(`Edit service: ${service.name}`)}
                   >
                     Edit
@@ -75,7 +103,22 @@ export default function ServicesAdmin() {
             ))}
           </tbody>
         </table>
-        {message && <p style={{ color: "red" }}>{message}</p>}{" "}
+        {message && (
+          <p
+            className="confirmDelete"
+            // style={{ color: "red", fontSize: "large" }}
+          >
+            {message}
+          </p>
+        )}{" "}
+        <div className="addContainer">
+          <button
+            className="add-button rounded-lg p-3 text-xl bg-[#4a9cd3]"
+            onClick={() => addService()}
+          >
+            Add a New Service
+          </button>
+        </div>
       </div>
     </div>
   );
