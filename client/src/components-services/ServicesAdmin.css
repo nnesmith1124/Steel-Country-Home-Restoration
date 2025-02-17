@@ -1,0 +1,49 @@
+.services-container {
+  margin: 3%;
+  width: 95%;
+  border-color: black;
+  border-style: solid;
+}
+
+.services-table {
+  margin: 1rem;
+  padding: 20px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 1rem;
+}
+
+th {
+  border: 0.5px solid darkgray; /* Ensures visible border */
+  border-radius: 1rem;
+}
+.table-title {
+  text-align: center;
+  border: 0.5px solid darkgray; /* Ensures visible border */
+  border-radius: 1rem;
+  /* border-style: solid;
+  border-color: black; */
+  font-size: larger;
+}
+
+.actions {
+  vertical-align: middle; /* Align content vertically */
+  text-align: center; /* Align content horizontally */
+}
+
+.action-button {
+  display: inline-block;
+  margin: 0 4px; /* Add space between buttons */
+}
+
+.confirmDelete {
+  color: red;
+  font-size: larger;
+  margin: auto;
+  text-align: center;
+}
+.addContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 3rem;
+}
