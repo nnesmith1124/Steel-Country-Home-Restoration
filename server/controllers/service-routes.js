@@ -88,6 +88,33 @@ router.get('/:_id', async (req, res) => {
   }
 })
 
+//GET one - 'localhost:3000/api/services/servicename/:name' - display one service by Name - Any User
+router.get('/servicename/:name', async (req, res) => {
+  try {
+    //get the service ID from the request params
+    const { name } = req.params
+
+    const service = await Service.findOne({ name })
+
+    //if no service matches the given ID
+    if (!service) {
+      return res.status(400).json({
+        message: 'Service not found!'
+      })
+    }
+
+    res.status(200).json({
+      result: service,
+      message: 'Service was retrieved successfully'
+    })
+  } catch (error) {
+    //return a 500 status code and an error message
+    res.status(500).json({
+      Error: error.message
+    })
+  }
+})
+
 //Update one - 'localhost:3000/api/services/:id' - update a service by ID - Any User
 router.put('/:_id', async (req, res) => {
   try {

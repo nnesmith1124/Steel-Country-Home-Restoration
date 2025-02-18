@@ -1,26 +1,33 @@
 import React, { useState } from "react";
 import { FaBars, FaHome } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import navigation hook
 
-import "./Navigation.css";
+//import "./Navigation.css";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate(); // Initialize navigation
 
   return (
-    <div class="relative">
+    <div className="relative h-[15vh]">
       {/* Logo */}
-      <div class="absolute top-0 left-10">
-        <img src="../assets/logo-2.jpg" alt="logo" width={200} height={200} />
+      <div className="absolute top-0 left-10 w-1/6 h-1/6 lg:w-1/8">
+        <img
+          src="../assets/logo-2.jpg"
+          alt="logo" /*width={200} height={200}*/
+        />
       </div>
 
-      <nav className="bg-[#4a9cd3] p-4">
+      <nav className="bg-[#4a9cd3] p-4 h-[15vh] ">
         {/* set the background color and p-4: Adds padding to all sides of the navbar (padding of 1rem). */}
-        <div className="container mx-auto flex justify-between items-center">
-          <div></div>
+        <div className="container mx-auto flex flex-row-reverse justify-between items-center ">
           {/* Hamburger Menu (Mobile) */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => {
+              setMenuOpen(!menuOpen);
+              if (!menuOpen) setDropdownOpen(false); // Reset dropdown when closing menu
+            }}
             className="lg:hidden text-white focus:outline-none"
           >
             <FaBars className="w-6 h-6" />
@@ -39,7 +46,7 @@ export default function NavBar() {
           {/* shadow-lg lg:shadow-none: Adds a large shadow to the mobile menu (shadow-lg), but no shadow on large screens (lg:shadow-none). */}
           {/* transition-all duration-300 ease-in-out: Smooth transition for all property changes, lasting 300ms with ease-in-out timing. */}{" "}
           <ul
-            className={`lg:flex space-x-6 text-white absolute lg:relative top-16 lg:top-0 left-0 w-full lg:w-auto bg-gray-800 lg:bg-transparent p-4 lg:p-0 shadow-lg lg:shadow-none transition-all duration-300 ease-in-out ${
+            className={`lg:flex items-center space-x-6 text-white absolute lg:relative top-16 lg:top-0 right-0 w-full lg:w-auto bg-gray-800 lg:bg-transparent p-4 lg:p-0 shadow-lg lg:shadow-none transition-all duration-300 ease-in-out ${
               menuOpen ? "block" : "hidden"
             }`}
           >
@@ -51,8 +58,9 @@ export default function NavBar() {
             </li>
             {/* Services Dropdown */}
             <li
-              className="relative text-2xl "
+              className="relative text-2xl"
               onMouseEnter={() => setDropdownOpen(true)}
+              //onMouseLeave={() => setDropdownOpen(false)} // Closes dropdown when mouse leaves
             >
               {/* Services Button */}
               {/* <a
@@ -63,12 +71,18 @@ export default function NavBar() {
               </a> */}
               <button
                 className="focus:outline-none hover:text-black text-2xl flex justify-between w-full lg:w-auto"
-                onClick={() => setDropdownOpen(!dropdownOpen)} // Mobile Click
+                onClick={() => {
+                  if (menuOpen) {
+                    setDropdownOpen(!dropdownOpen); // Toggle dropdown in mobile mode
+                  } else {
+                    navigate("/services"); // Navigate to /services on desktop
+                  }
+                }}
               >
                 Services ▼
               </button>
 
-              {/* Dropdown Menu - Ensures No Flickering */}
+              {/* Dropdown Menu */}
               {/* absolute left-0 mt-1: Positioned absolutely below the "Services" button with a top margin. */}
               {/* w-48: Sets the width of the dropdown menu to 48 units. */}
               {/* bg-white text-black: Sets background to white and text color to black. */}
@@ -78,11 +92,20 @@ export default function NavBar() {
               {/* opacity-100 visible: When dropdownOpen is true, the dropdown is visible. */}
               {/* opacity-0 invisible pointer-events-none: When dropdownOpen is false, it becomes invisible and non-interactive. */}
               <div
-                className={`absolute left-0 mt-1 w-48 bg-white text-black shadow-lg rounded-md transition-opacity duration-200 ${
-                  dropdownOpen
-                    ? "opacity-100 visible"
-                    : "opacity-0 invisible pointer-events-none"
-                }`}
+                // className={`lg:absolute lg:left-0 lg:mt-1 bg-white text-black w-fit shadow-lg rounded-md transition-opacity duration-200
+                //   ${
+                //     dropdownOpen || menuOpen
+                //       ? "opacity-100 visible"
+                //       : "opacity-0 invisible pointer-events-none lg:pointer-events-auto"
+                //   }
+                //   lg:opacity-100 lg:visible lg:pointer-events-auto lg:block`}
+
+                className={`lg:absolute lg:left-0 lg:mt-1 lg:w-40 w-fit bg-white text-black shadow-lg rounded-md transition-opacity duration-200 
+      ${
+        dropdownOpen || menuOpen
+          ? "opacity-100 visible pointer-events-auto"
+          : "opacity-0 invisible pointer-events-none"
+      }`}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
                 <ul className="py-2">
@@ -107,7 +130,7 @@ export default function NavBar() {
               <a href="/contact">Contact</a>
             </li>
             <li className="hover:text-black text-2xl font-bold">
-              <a href="/contact">Get A Free Estimate</a>
+              <a href="/inquiry">Get A Free Estimate</a>
             </li>
           </ul>
         </div>
@@ -115,41 +138,3 @@ export default function NavBar() {
     </div>
   );
 }
-
-/* <div className="navigation-component">
-      <div className="navigation-container">
-        <div className="logo-container">
-          <img src="../assets/logo.jpg" alt="logo" width={200} height={200} />
-        </div>
-        <nav>
-          <ul className="nav-menu">
-            <li>
-              <a className="navitem" href="/">
-                Home
-              </a>
-            </li>
-            <li>
-              <a className="navitem" href="/about">
-                About
-              </a>
-            </li>
-            <li>
-              <a className="navitem" href="/contact">
-                Contact
-              </a>
-            </li>
-            <li>
-              <a className="navitem" href="/services">
-                Services
-              </a>
-            </li>
-            <li>
-              <a className="navitem" href="/inquiry">
-                Inquiry
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
- */

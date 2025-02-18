@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Footer from "../Components/Footer";
 import axios from "axios";
 
 import "./Login.css";
@@ -59,6 +60,7 @@ export default function Login() {
           Login
         </button>
       </form>
+        <Footer />
     </div>
   );
 }
