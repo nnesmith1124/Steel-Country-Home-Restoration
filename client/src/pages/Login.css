@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-container {
+  height: 90vh;
+  width: 70%;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  box-shadow: 5px 5px 5px 5px gray;
+}
+
+.header{
+  display: grid;
+  justify-content: left;
+  margin-bottom: 10vh;
+  font-size: xx-large;
+}
+
+.text-input {
+  border-width: 2px;
+  border-color: black;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 1vh;
+}
+
+.submit {
+  background-color: blue;
+  color: white;
+  border-color: black;
+  border-width: 2px;
+  border-radius: 20px;
+  width: 100%;
+  height: 5vh;
+  padding: 3px;
+  display: grid;
+  justify-self: center;
+  margin-top: 10vh;
+}
+
+.username {
+  /* background-color: aqua; */
+  margin-bottom: 10vh;
+  font-size: larger;
+}
+
+.password {
+  /* background-color: wheat; */
+  font-size: larger;
+  margin-bottom: 2vh;
+}
+
+.error {
+  color: red;
+  font-size: medium;
+}

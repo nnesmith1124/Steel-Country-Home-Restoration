@@ -1,5 +1,7 @@
 const router = require('express').Router() // Import express and create a new router
 
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const Login = require('../models/login.schema')
 
 router.post('/api/register', async (req, res) => {
