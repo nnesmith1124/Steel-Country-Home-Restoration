@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../Components/Footer";
 
-import ServicesList from "../components-services/Services";
+import ServicesList from "../components-services/ServicesList";
 
 import NavBar from "../Components/NavBar";
 
