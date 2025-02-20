@@ -1,7 +1,7 @@
 const router = require('express').Router() // Import express and create a new router
 
 const Service = require('../models/service') // Import the room model
-const authenticateToken = require('../middleware/authenticateToken') // Import the authenticateToken middleware
+//const authenticateToken = require('../middleware/authenticateToken') // Import the authenticateToken middleware
 
 //POST - 'localhost:3000/api/services' - create a new service - Admin only
 router.post(
@@ -30,7 +30,7 @@ router.post(
     } catch (error) {
       //return a 500 status code and an error message
       res.status(500).json({
-        Error: error.message
+        Error: `${error.message} hala`
       })
     }
   }
@@ -118,6 +118,7 @@ router.get('/servicename/:name', async (req, res) => {
 //Update one - 'localhost:3000/api/services/:id' - update a service by ID - Any User
 router.put('/:_id', async (req, res) => {
   try {
+    console.log('I am in put')
     //get the service ID from the request params
     const { _id } = req.params
 

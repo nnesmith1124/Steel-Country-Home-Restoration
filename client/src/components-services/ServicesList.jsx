@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"; // Import the useEffect and 
 
 const API = "http://localhost:3000/api/services";
 
-export default function Services() {
+export default function ServicesList() {
   //Create a services state variable
   const [services, setServices] = useState([]);
 

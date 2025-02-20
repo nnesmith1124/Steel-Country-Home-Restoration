@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react"; // Import the useEffect and useState hooks
+import { useNavigate } from "react-router-dom";
 import "./ServicesAdmin.css";
 
 const API = "http://localhost:3000/api/services";
 
 export default function ServicesAdmin() {
+  const navigate = useNavigate();
+
   //Create a services state variable
   const [services, setServices] = useState([]); //Create the services state variable
   const [message, setMessage] = useState(""); // Create the message state variable
@@ -32,6 +35,15 @@ export default function ServicesAdmin() {
 
   const addService = () => {
     alert("Adding a new service!");
+    navigate("/admin/services/add-service");
+  };
+
+  const updateService = (index) => {
+    alert(`Edit service: ${services[index].name}`);
+    navigate("/admin/services/update-service", {
+      //state: { _id: services[index]._id, serviceName: services[index].name },
+      state: { service: services[index] },
+    });
   };
 
   return (
@@ -80,8 +92,8 @@ export default function ServicesAdmin() {
                 <td className="service-description border border-gray-400 p-4">
                   {service.description}
                 </td>
-                <td className="service-image border border-gray-400 p-4">
-                  <img src={service.imageUrl} alt={service.name} width="300" />
+                <td className="service-image border border-gray-400 p-4 w-150 lg-w-fit">
+                  <img src={service.imageUrl} alt={service.name} />
                 </td>
                 <td
                   className="actions" /*flex justify-between items-center p-4*/
@@ -94,7 +106,7 @@ export default function ServicesAdmin() {
                   </button>
                   <button
                     className="action-button rounded-lg p-3 text-xl bg-[#4a9cd3]"
-                    onClick={() => alert(`Edit service: ${service.name}`)}
+                    onClick={() => updateService(index)}
                   >
                     Edit
                   </button>

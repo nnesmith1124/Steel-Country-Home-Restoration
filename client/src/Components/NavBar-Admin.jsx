@@ -47,7 +47,7 @@ export default function NavBar() {
           >
             {/* Home with Icon */}
             <li className="hover:text-black text-2xl flex items-center">
-              <a href="/" className="flex items-center gap-2">
+              <a href="/admin" className="flex items-center gap-2">
                 <FaHome /> Home
               </a>
             </li>
