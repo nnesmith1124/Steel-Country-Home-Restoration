@@ -1,8 +1,7 @@
 const mongoose = require ('mongoose')
 
-const Schema = mongoose.Schema
-
-const inquirySchema = new Schema({
+const inquirySchema = new mongoose.Schema(
+  {
     name: { type: String,
             required: true
     },
@@ -21,8 +20,8 @@ const inquirySchema = new Schema({
     message: {type: String,
               required : true           
     }
-})
-
-  
+}, 
+{timestamps: true}
+)
   //inquiry model
   mongoose.exports = mongoose.model('Inquiry', inquirySchema)
