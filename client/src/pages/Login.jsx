@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Footer from "../Components/Footer";
+//import Footer from "../Components/Footer";
 import axios from "axios";
 
 import "./Login.css";
@@ -32,7 +32,6 @@ export default function Login() {
 
   return (
     <div className="login-container">
-     
       <form onSubmit={handleSubmit}>
         <h1 className="header">Login</h1>
         <div className="username">
@@ -60,7 +59,6 @@ export default function Login() {
           Login
         </button>
       </form>
-        <Footer />
     </div>
   );
 }

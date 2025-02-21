@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; // Import navigation hook
-
+import { Link } from "react-router-dom"; //to dynamically link to each service page
 //import "./Navigation.css";
+
+const API = "http://localhost:3000/api/services";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const [services, setServices] = useState([]);
   const navigate = useNavigate(); // Initialize navigation
+
+  //Run this effect once when the page mounts to get the list of services
+  useEffect(() => {
+    //get the services from the API
+    fetch(API)
+      .then((response) => response.json()) // Parse the response as JSON
+      .then((data) => {
+        setServices(data.result);
+        //        console.log(data.result);
+      }) //set the services state variable
+      .catch((error) => console.log(error)); //log any errors
+  }, []);
 
   return (
     <div className="relative h-[15vh]">
@@ -111,7 +127,7 @@ export default function NavBar() {
                 <ul className="py-2">
                   {/* px-4 py-2: Padding on the left, right, top, and bottom of each list item. */}
                   {/* hover:bg-gray-200: Changes the background color on hover. */}
-                  <li className="px-4 py-2 hover:bg-gray-200">
+                  {/* <li className="px-4 py-2 hover:bg-gray-200">
                     <a href="/roofing">Roofing</a>
                   </li>
                   <li className="px-4 py-2 hover:bg-gray-200">
@@ -119,7 +135,17 @@ export default function NavBar() {
                   </li>
                   <li className="px-4 py-2 hover:bg-gray-200">
                     <a href="/painting">Painting</a>
-                  </li>
+                  </li> */}
+                  {services.map((service) => (
+                    <li
+                      key={service._id}
+                      className="px-4 py-2 hover:bg-gray-200"
+                    >
+                      <Link to={`/service/${service.name}`}>
+                        {service.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </li>

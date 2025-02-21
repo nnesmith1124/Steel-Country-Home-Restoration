@@ -1,8 +1,8 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 .login-container {
   height: 90vh;
@@ -19,7 +19,7 @@
   box-shadow: 5px 5px 5px 5px gray;
 }
 
-.header{
+.header {
   display: grid;
   justify-content: left;
   margin-bottom: 10vh;
