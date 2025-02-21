@@ -4,7 +4,7 @@ const Inquiry = require('../models/inquiry') // Import the room model
 const authenticateToken = require('../middleware/authenticateToken')
 
 //Get all inquiries
-router.get('/api/inquiry', async (req, res) => { 
+router.get('/', async (req, res) => { 
 try{
     const inquiry = await Inquiry.find()
     
@@ -28,7 +28,7 @@ try{
 }) 
 
 // GET - /api/inquiry/:id - get an inquiry by id
-router.get("/api/inquiry/:_id", async (req, res) => {
+router.get("/:_id", async (req, res) => {
     try {
         // capture the id from the request
         const {_id} = req.params;
@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
 })
 
 //Update one - update an inquiry by ID 
-router.put('/:id', async (req, res) => {
+router.put("/:_id", async (req, res) => {
   try {
     //get the service ID from the request params
     const { _id } = req.params
@@ -99,7 +99,7 @@ router.put('/:id', async (req, res) => {
   }
 })
 // DELETE - /api/inquiry/:id - delete an inquiry by id
-router.delete("/api/inquiry/:id", async (req, res) => {
+router.delete("/:_id", async (req, res) => {
     try {
         const id = (req.params);
         // remove the inquire from the array
@@ -117,18 +117,4 @@ router.delete("/api/inquiry/:id", async (req, res) => {
     }
 })
 
-// DELETE - /api/inquiry - delete all inquiries
-// router.delete("/api/inquiry", async (req, res) => {
-
-//    try {
-//     Inquiry.find()
-//     res.status(200).send("All Inquiries Deleted!")
-//    } catch (error) {
-//     console.error(error)
-//    }
-
-    
-// })
-
-
-module.exports = express.Router()
+module.exports = router
