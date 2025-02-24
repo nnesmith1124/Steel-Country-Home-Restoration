@@ -24,4 +24,4 @@ const inquirySchema = new mongoose.Schema (
 {timestamps: true}
 )
   //inquiry model
-  mongoose.exports = mongoose.model('Inquiry', inquirySchema)
+  module.exports = mongoose.model('Inquiry', inquirySchema)
