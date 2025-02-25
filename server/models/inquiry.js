@@ -17,11 +17,14 @@ const inquirySchema = new mongoose.Schema (
     service: {type: String,
             required: true
     },
-    message: {type: String,
+    description: {type: String,
               required : true           
+    },
+    status: {type: String, 
+             required : false
     }
 }, 
-{timestamps: true}
+
 )
   //inquiry model
   module.exports = mongoose.model('Inquiry', inquirySchema)

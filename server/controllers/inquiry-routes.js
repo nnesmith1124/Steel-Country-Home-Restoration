@@ -52,15 +52,15 @@ router.get("/:_id", async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, email, phone, service, address, message } = req.body   
+        const { name, email, phone, service, address, description } = req.body   
 // Create New inquiry
         const newInquiry = new Inquiry ({
             name,
             email,
             phone,
-            service,
             address,
-            message
+            service,
+            description
         })
          // add the new inquiry to the array
          await newInquiry.save();
@@ -69,7 +69,7 @@ router.post('/', async (req, res) => {
          res.status(200).json(newInquiry);
     }catch (error) {
         console.error(error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Internal Server Error: Failure to Post Inquiry');
     }
 })
 
