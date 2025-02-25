@@ -52,7 +52,7 @@ router.get("/:_id", async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, email, phone, service, address, description } = req.body   
+        const { name, email, phone, address, service, description } = req.body   
 // Create New inquiry
         const newInquiry = new Inquiry ({
             name,
