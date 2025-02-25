@@ -1,8 +1,7 @@
 const mongoose = require ('mongoose')
 
-const Schema = mongoose.Schema
-
-const inquirySchema = new Schema({
+const inquirySchema = new mongoose.Schema (
+  {
     name: { type: String,
             required: true
     },
@@ -18,11 +17,14 @@ const inquirySchema = new Schema({
     service: {type: String,
             required: true
     },
-    message: {type: String,
+    description: {type: String,
               required : true           
+    },
+    status: {type: String, 
+             required : false
     }
-})
+}, 
 
-  
+)
   //inquiry model
-  mongoose.exports = mongoose.model('Inquiry', inquirySchema)
+  module.exports = mongoose.model('Inquiry', inquirySchema)
