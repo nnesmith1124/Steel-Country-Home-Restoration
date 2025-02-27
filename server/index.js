@@ -18,10 +18,12 @@ connectDB()
 
 //* Imports for controllers
 const serviceController = require('./controllers/service-routes.js')
+const inquiryController = require('./controllers/inquiry-routes.js')
 const userController = require('./controllers/user-routes.js')
 
 //* Routes
 app.use('/api/services', serviceController)
+app.use('/api/inquiry', inquiryController)
 app.use('/api', userController)
 
 app.listen(PORT, () => {
