@@ -19,7 +19,7 @@ export default function NavBar() {
         />
       </div>
 
-      <nav className="bg-[#4a9cd3] p-4 h-[15vh] ">
+      <nav className="bg-[#4C7A5B] p-4 h-[15vh] ">
         {/* set the background color and p-4: Adds padding to all sides of the navbar (padding of 1rem). */}
         <div className="container mx-auto flex flex-row-reverse justify-between items-center ">
           {/* Hamburger Menu (Mobile) */}
@@ -130,7 +130,7 @@ export default function NavBar() {
               <a href="/contact">Contact</a>
             </li>
             <li className="hover:text-black text-2xl font-bold">
-              <a href="/inquiry">Get A Free Estimate</a>
+              <a href="/contact">Get A Free Estimate</a>
             </li>
           </ul>
         </div>
