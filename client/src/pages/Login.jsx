@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Footer from "../Components/Footer";
 import axios from "axios";
 
 import "./Login.css";
@@ -13,14 +12,13 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/api/login", {
+      const response = await axios.post(`http://localhost:8080/api/login`, {
         username,
         password,
       });
 
       if (response.data) {
         console.log("Login successful, token received:", response.data);
-
         localStorage.setItem("authToken", response.data);
       } else {
         setErrorMessage("Login failed: No token received.");
@@ -60,7 +58,6 @@ export default function Login() {
           Login
         </button>
       </form>
-        <Footer />
     </div>
   );
 }

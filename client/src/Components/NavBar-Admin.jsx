@@ -17,7 +17,7 @@ export default function NavBar() {
         />
       </div>
 
-      <nav className="bg-[#4a9cd3] p-4 h-[15vh] ">
+      <nav className="bg-[#4C7A5B] p-4 h-[15vh] ">
         {/* set the background color and p-4: Adds padding to all sides of the navbar (padding of 1rem). */}
         <div className="container mx-auto flex flex-row-reverse justify-between items-center ">
           {/* Hamburger Menu (Mobile) */}
@@ -59,7 +59,7 @@ export default function NavBar() {
               <a href="/admin/inquiries">Inquiries</a>
             </li>
             <li className="hover:text-black text-2xl">
-              <a href="/admin/logout">Logout</a>
+              <a href="/">Logout</a>
             </li>
           </ul>
         </div>

@@ -52,15 +52,15 @@ router.get("/:_id", async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, email, phone, address, service, description } = req.body   
+        const { name, phone, email, zipCode, service, message } = req.body   
 // Create New inquiry
         const newInquiry = new Inquiry ({
             name,
-            email,
             phone,
-            address,
+            email,
+            zipCode,
             service,
-            description
+            message
         })
          // add the new inquiry to the array
          await newInquiry.save();
@@ -80,9 +80,9 @@ router.put("/:_id", async (req, res) => {
     const { _id } = req.params
 
     //get the updated service fields from the request body
-    const { name, email, phone, address, service, description } = req.body
+    const { name, phone, email, zipCode, service, message } = req.body
 
-    const updatedInquiry = { name, email, phone, address, service, description }
+    const updatedInquiry = { name, phone, email, zipCode, service, message }
 
     //find the service and update its fields
     await Inquiry.findByIdAndUpdate(_id, updatedInquiry)
