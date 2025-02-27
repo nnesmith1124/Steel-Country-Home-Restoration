@@ -80,9 +80,9 @@ router.put("/:_id", async (req, res) => {
     const { _id } = req.params
 
     //get the updated service fields from the request body
-    const { name, email, phone, service, address, message } = req.body
+    const { name, email, phone, address, service, description } = req.body
 
-    const updatedInquiry = { name, email, phone, service, address, message }
+    const updatedInquiry = { name, email, phone, address, service, description }
 
     //find the service and update its fields
     await Inquiry.findByIdAndUpdate(_id, updatedInquiry)
