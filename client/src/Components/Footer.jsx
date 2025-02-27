@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div>
       {/* Logo and Contact Information */}
-      <div className="bg-[#4a9cd3] flex flex-col justify-between">
+      <div className="bg-[#4C7A5B] flex flex-col justify-between">
         {/* Logo */}
         <div className="ml-5 mt-5 w-1/12 h-1/12">
           <img src="../assets/logo-2.jpg" alt="logo" />
