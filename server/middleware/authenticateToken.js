@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken') //import jsonwebtoken
-const User = require('../models/login.schema') //import the user model
-const dotenv = require('dotenv')
 require('dotenv').config()
+
+const Login = require('../models/login.schema')
 
 const authenticateUser = async (req, res, next) => {
   try {
@@ -36,3 +36,6 @@ const authenticateUser = async (req, res, next) => {
     console.log(error)
   }
 }
+
+
+module.exports = authenticateUser
