@@ -1,43 +1,39 @@
 const router = require('express').Router() // Import express and create a new router
 
 const Service = require('../models/service') // Import the room model
-//const authenticateToken = require('../middleware/authenticateToken') // Import the authenticateToken middleware
 
 //POST - 'localhost:3000/api/services' - create a new service - Admin only
-router.post(
-  '/',
-  /* authenticateToken ,*/ async (req, res) => {
-    try {
-      //get request body
-      const { name, description, imageUrl } = req.body
+const createService = async (req, res) => {
+  try {
+    //get request body
+    const { name, description, imageUrl } = req.body
 
-      if (!name || !description || !imageUrl) {
-        // If any of the fields are missing
-        return res.status(401).json({
-          message: 'All Fields are Required!' // Return a 401 status code and a message
-        })
-      }
-      //create a new service object
-      const newService = new Service({ name, description, imageUrl })
-
-      //save new service to database
-      await newService.save()
-
-      res.status(200).json({
-        result: newService,
-        message: 'Service was created successfully'
-      })
-    } catch (error) {
-      //return a 500 status code and an error message
-      res.status(500).json({
-        Error: `${error.message} hala`
+    if (!name || !description || !imageUrl) {
+      // If any of the fields are missing
+      return res.status(401).json({
+        message: 'All Fields are Required!' // Return a 401 status code and a message
       })
     }
+    //create a new service object
+    const newService = new Service({ name, description, imageUrl })
+
+    //save new service to database
+    await newService.save()
+
+    res.status(200).json({
+      result: newService,
+      message: 'Service was created successfully'
+    })
+  } catch (error) {
+    //return a 500 status code and an error message
+    res.status(500).json({
+      Error: `${error.message} hala`
+    })
   }
-)
+}
 
 //GET All - 'localhost:3000/api/services' - display all services - Any User
-router.get('/', async (req, res) => {
+const getAllServices = async (req, res) => {
   try {
     const services = await Service.find()
     //get all services from database
@@ -59,10 +55,10 @@ router.get('/', async (req, res) => {
       Error: error.message
     })
   }
-})
+}
 
 //GET one - 'localhost:3000/api/services/:id' - display one service by ID - Any User
-router.get('/:_id', async (req, res) => {
+const getServiceById = async (req, res) => {
   try {
     //get the service ID from the request params
     const { _id } = req.params
@@ -86,10 +82,10 @@ router.get('/:_id', async (req, res) => {
       Error: error.message
     })
   }
-})
+}
 
 //GET one - 'localhost:3000/api/services/servicename/:name' - display one service by Name - Any User
-router.get('/servicename/:name', async (req, res) => {
+const getServiceByName = async (req, res) => {
   try {
     //get the service ID from the request params
     const { name } = req.params
@@ -113,10 +109,10 @@ router.get('/servicename/:name', async (req, res) => {
       Error: error.message
     })
   }
-})
+}
 
 //Update one - 'localhost:3000/api/services/:id' - update a service by ID - Any User
-router.put('/:_id', async (req, res) => {
+const updateServiceById = async (req, res) => {
   try {
     console.log('I am in put')
     //get the service ID from the request params
@@ -140,10 +136,10 @@ router.put('/:_id', async (req, res) => {
       Error: error.message
     })
   }
-})
+}
 
 //Delete one - 'localhost:3000/api/services/:id' - delete a service by ID - Any User
-router.delete('/:_id', async (req, res) => {
+const deleteServiceById = async (req, res) => {
   try {
     //get the service ID from the request params
     const { _id } = req.params
@@ -166,6 +162,13 @@ router.delete('/:_id', async (req, res) => {
       Error: error.message
     })
   }
-})
+}
 
-module.exports = router
+module.exports = {
+  createService,
+  getAllServices,
+  getServiceById,
+  getServiceByName,
+  updateServiceById,
+  deleteServiceById
+}
