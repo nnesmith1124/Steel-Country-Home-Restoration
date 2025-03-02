@@ -1,8 +1,11 @@
 const router = require('express').Router() // Import express and create a new router
 
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const Login = require('../models/login.schema')
+const SALT_ROUNDS = 10
 
-router.post('/api/register', async (req, res) => {
+router.post('/register', async (req, res) => {
   const { username, password } = req.body
 
   // validate the request body
@@ -30,7 +33,7 @@ router.post('/api/register', async (req, res) => {
 })
 
 // app.post("/api/login", (req, res) => {});
-router.post('/api/login', async (request, response) => {
+router.post('/login', async (request, response) => {
   const { username, password } = request.body
 
   if (!username || !password) {

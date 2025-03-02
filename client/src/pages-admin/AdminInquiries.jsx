@@ -1,13 +1,12 @@
 import React from "react";
-import NavBar from "../Components/NavBar";
+import NavBarAdmin from "../Components/NavBar-Admin"; //Hala
 import Footer from "../Components/Footer";
 
-export default function Inquiry() {
+export default function AdminInquiries() {
   return (
     <div>
-      <NavBar />
-      <h1>Inquiry Form Page </h1>
-
+      <NavBarAdmin />
+      <h1>Admin Inquiries Page</h1>
       <p>
         <br />
       </p>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import "./Login.css";
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,45 +12,51 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/api/login", {
+      const response = await axios.post(`http://localhost:8080/api/login`, {
         username,
         password,
       });
 
-      if (response.data.success) {
-        console.log("Login successful:", response.data);
+      if (response.data) {
+        console.log("Login successful, token received:", response.data);
+        localStorage.setItem("authToken", response.data);
       } else {
-        setErrorMessage(response.data.message);
+        setErrorMessage("Login failed: No token received.");
       }
     } catch (error) {
-      setErrorMessage("Something went wrong. Please try again later.");
+      setErrorMessage("Could not log in successfully. Please try again.");
     }
   };
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
-      {errorMessage && <p className="error">{errorMessage}</p>}
+     
       <form onSubmit={handleSubmit}>
-        <div>
+        <h1 className="header">Login</h1>
+        <div className="username">
           <label>Username</label>
           <input
+            className="text-input"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Password</label>
+        <div className="password">
+          <label>Password </label>
           <input
+            className="text-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Login</button>
+        {errorMessage && <p className="error">{errorMessage}</p>}
+        <button className="submit" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

@@ -1,9 +1,9 @@
 import React from "react";
 //import Navbar from "../Components/index"; //Nick
 import NavBar from "../Components/NavBar"; //Hala
+import Footer from "../Components/Footer";
 //import NavBar from "../Components/Navigation"; //Hala
 import Slideshow from "../Components/Slideshow";
-import Footer from "../Components/Footer";
 
 export default function Home() {
   return (
