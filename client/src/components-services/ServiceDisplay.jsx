@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"; // Import the useEffect and 
 export default function ServiceDisplay(props) {
   const { serviceName } = props;
 
-  const API = `http://localhost:3000/api/services/servicename/${serviceName}`;
+  const API = `http://localhost:8080/api/services/servicename/${serviceName}`;
 
   console.log(props);
   console.log(serviceName);

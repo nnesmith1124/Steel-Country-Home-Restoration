@@ -40,12 +40,12 @@ export default function Footer() {
               <li className="hover:text-gray-300 transition-colors">
                 <a href="/painting">Painting</a>
               </li>
-              <li className="hover:text-gray-300 transition-colors">
+              {/* <li className="hover:text-gray-300 transition-colors">
                 <a href="/services">Pressure Washing</a>
               </li>
               <li className="hover:text-gray-300 transition-colors">
                 <a href="/services">Interior Renovations</a>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -63,9 +63,6 @@ export default function Footer() {
               </li>
               <li className="hover:text-gray-300 transition-colors">
                 <a href="/contact">Get a Free Estimate</a>
-              </li>
-              <li className="hover:text-gray-300 transition-colors">
-                <a href="/contact">Contact</a>
               </li>
             </ul>
           </div>

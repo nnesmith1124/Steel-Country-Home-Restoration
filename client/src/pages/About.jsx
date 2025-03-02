@@ -15,7 +15,7 @@ export default function About() {
           src="../assets/cover-photo.png"
           alt="Steel Country Home Restoration"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="absolute inset-0 bg-[#A1B28E] bg-opacity-50 flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">About Us</h1>
         </div>
       </div>
