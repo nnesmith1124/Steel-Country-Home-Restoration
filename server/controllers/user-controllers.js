@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const Login = require("../models/login.schema");
 const SALT_ROUNDS = 10;
 
+// POST - /api/register - register a new user
 const registerUser = async (req, res) => {
   const { username, password } = req.body;
 

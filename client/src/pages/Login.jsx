@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import for navigation
 
 import "./Login.css";
 
@@ -7,12 +8,13 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); // Initialize navigation hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`http://localhost:8080/api/login`, {
+      const response = await axios.post(`http://localhost:8080/api/users/login`, {
         username,
         password,
       });
@@ -20,6 +22,8 @@ export default function Login() {
       if (response.data) {
         console.log("Login successful, token received:", response.data);
         localStorage.setItem("authToken", response.data);
+        // Redirect to admin page after successful login
+        navigate("/admin");
       } else {
         setErrorMessage("Login failed: No token received.");
       }
@@ -30,7 +34,6 @@ export default function Login() {
 
   return (
     <div className="login-container">
-     
       <form onSubmit={handleSubmit}>
         <h1 className="header">Login</h1>
         <div className="username">
