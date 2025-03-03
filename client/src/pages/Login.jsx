@@ -8,100 +8,96 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [apiUrl, setApiUrl] = useState("http://localhost:8080/api/users/login");
+  const [timeoutMs, setTimeoutMs] = useState(10000); // Increased to 10 seconds
   const navigate = useNavigate();
 
-  // Add component mount logging
+  // Add API connection test on component mount
   useEffect(() => {
-    console.log("Login component mounted");
-    console.log("API endpoint will be:", `http://localhost:8080/api/users/login`);
-    // Check if React Router is working properly
-    console.log("Navigate function available:", typeof navigate === "function");
-  }, [navigate]);
+    console.log("Testing API connection...");
+
+    // Simple GET request to check if API is reachable
+    axios.get("http://localhost:8080/api")
+      .then(response => {
+        console.log("API reachable:", response.status);
+      })
+      .catch(error => {
+        console.error("API not reachable:", error.message);
+
+        if (error.code === "ERR_NETWORK") {
+          console.log("Network error detected. API server might not be accessible on localhost.");
+        }
+      });
+
+    // Test alternative localhost formats
+    console.log("Testing alternative API URLs...");
+    axios.get("http://127.0.0.1:8080/api")
+      .then(response => {
+        console.log("API reachable via 127.0.0.1:", response.status);
+        setApiUrl("http://127.0.0.1:8080/api/users/login");
+      })
+      .catch(error => {
+        console.error("API not reachable via 127.0.0.1");
+      });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Login form submitted");
-    console.log("Attempting login with username:", username);
+    console.log("Using API URL:", apiUrl);
+    console.log("Using timeout:", timeoutMs + "ms");
 
     try {
       console.log("Making API request to login endpoint...");
-      console.log("Before axios call - this should appear");
 
-      // Adding timeout to catch hanging requests
+      // Create axios instance with configurable timeout
       const axiosInstance = axios.create({
-        timeout: 5000 // 5 second timeout
+        timeout: timeoutMs
       });
 
-      console.log("Axios instance created with timeout");
+      // Additional headers that might help
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Cache-Control': 'no-cache'
+        }
+      };
 
-      let response;
-      try {
-        // Wrapping in additional try/catch to pinpoint exactly where it fails
-        console.log(`Sending POST to http://localhost:8080/api/users/login`);
-        response = await axiosInstance.post(`http://localhost:8080/api/users/login`, {
-          username,
-          password,
-        });
-        console.log("API call completed successfully");
-      } catch (axiosError) {
-        console.log("Inner axios call failed:", axiosError.message);
-        // Re-throw to be caught by the outer catch
-        throw axiosError;
-      }
+      const response = await axiosInstance.post(apiUrl, {
+        username,
+        password,
+      }, config);
 
       console.log("API response received:", response);
-      console.log("Response status:", response.status);
-      console.log("Response data type:", typeof response.data);
-      console.log("Response data:", response.data);
 
       if (response.data) {
         console.log("Login successful, token received");
-        console.log("Setting auth token in localStorage");
         localStorage.setItem("authToken", response.data);
-
-        console.log("Checking localStorage after setting:", localStorage.getItem("authToken"));
-
-        console.log("Attempting to navigate to /admin");
         navigate("/admin");
-        console.log("Navigate function called");
       } else {
-        console.log("No data in response");
         setErrorMessage("Login failed: No token received.");
       }
     } catch (error) {
       console.error("Login failed with error:", error);
-      console.error("Error name:", error.name);
-      console.error("Error message:", error.message);
 
-      // Check for network errors specifically
-      if (error.message.includes("Network Error")) {
-        console.error("NETWORK ERROR: The API server might not be running or accessible");
-        setErrorMessage("Network Error: Cannot connect to the server. Is it running?");
-      } else if (error.code === 'ECONNABORTED') {
-        console.error("TIMEOUT: The request took too long to complete");
-        setErrorMessage("Timeout: Server took too long to respond");
-      } else if (error.response) {
-        // The request was made and the server responded with a status code
-        console.error("Error response data:", error.response.data);
-        console.error("Error response status:", error.response.status);
-        setErrorMessage(`Server error (${error.response.status}): ${JSON.stringify(error.response.data)}`);
-      } else if (error.request) {
-        // The request was made but no response was received
-        console.error("Error request (no response received):", error.request);
-        console.error("Request method:", error.request.method);
-        console.error("Request URL:", error.request.url);
-        setErrorMessage("Request failed: No response from server");
+      if (error.code === 'ECONNABORTED') {
+        setErrorMessage(`Connection timed out after ${timeoutMs / 1000} seconds. Try increasing the timeout below.`);
+      } else if (error.message.includes("Network Error")) {
+        setErrorMessage("Network Error: Cannot connect to server. Try the alternative URL below.");
       } else {
-        // Something happened in setting up the request
-        console.error("Unknown error in request setup");
-        setErrorMessage("Failed to set up request: " + error.message);
+        setErrorMessage("Login failed: " + error.message);
       }
-
-      // Log CORS information to help debug cross-origin issues
-      console.log("Checking for potential CORS issues...");
-      console.log("Current origin:", window.location.origin);
-      console.log("Target API:", "http://localhost:8080");
     }
+  };
+
+  // Add ability to change API URL and timeout for debugging
+  const handleApiUrlChange = (e) => {
+    setApiUrl(e.target.value);
+  };
+
+  const handleTimeoutChange = (e) => {
+    setTimeoutMs(parseInt(e.target.value, 10));
   };
 
   return (
@@ -133,6 +129,47 @@ export default function Login() {
           Login
         </button>
       </form>
+
+      {/* Debugging tools */}
+      <div style={{ marginTop: '30px', padding: '15px', border: '1px solid #ccc', borderRadius: '5px' }}>
+        <h3>Debug Settings</h3>
+        <div style={{ marginBottom: '10px' }}>
+          <label style={{ display: 'block', marginBottom: '5px' }}>API URL:</label>
+          <input
+            type="text"
+            value={apiUrl}
+            onChange={handleApiUrlChange}
+            style={{ width: '100%', padding: '5px' }}
+          />
+        </div>
+        <div style={{ marginBottom: '10px' }}>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Timeout (ms):</label>
+          <input
+            type="number"
+            value={timeoutMs}
+            onChange={handleTimeoutChange}
+            style={{ width: '100%', padding: '5px' }}
+            min="1000"
+            step="1000"
+          />
+        </div>
+        <div>
+          <button
+            type="button"
+            onClick={() => setApiUrl("http://127.0.0.1:8080/api/users/login")}
+            style={{ marginRight: '10px', padding: '5px 10px' }}
+          >
+            Use 127.0.0.1
+          </button>
+          <button
+            type="button"
+            onClick={() => setApiUrl("http://localhost:8080/api/users/login")}
+            style={{ padding: '5px 10px' }}
+          >
+            Use localhost
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
