@@ -18,7 +18,7 @@ export default function Services() {
   return (
     <div>
       <ul>
-        {services.map((inquiry) => {
+        {inquiry.map((inquiry) => {
           // Render the inquiry name inside a list item
           return (
             <li key={inquiry.id}>

@@ -1,3 +1,4 @@
+import React ,{ useEffect, useState } from "react";
 import "./inquiryForm.css";
 
 function form(){
@@ -12,9 +13,10 @@ function form(){
     status: ''
     });
 
-    const handleChange = (e) => {
+//     const handleChange = (e) => ({
+//         name : "",
 
-    }
+// })
     
     return(
         <div clasname = "form">
@@ -42,7 +44,6 @@ function form(){
                     <option value="painting">Painting</option>
                     <option value="roofing">Roofing</option>
                     <option value="siding">Siding</option>
-
                 </select>
 
                 <label htmlFor="description ">Description </label>
