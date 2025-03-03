@@ -25,11 +25,29 @@ export default function Login() {
 
     try {
       console.log("Making API request to login endpoint...");
+      console.log("Before axios call - this should appear");
 
-      const response = await axios.post(`http://localhost:8080/api/users/login`, {
-        username,
-        password,
+      // Adding timeout to catch hanging requests
+      const axiosInstance = axios.create({
+        timeout: 5000 // 5 second timeout
       });
+
+      console.log("Axios instance created with timeout");
+
+      let response;
+      try {
+        // Wrapping in additional try/catch to pinpoint exactly where it fails
+        console.log(`Sending POST to http://localhost:8080/api/users/login`);
+        response = await axiosInstance.post(`http://localhost:8080/api/users/login`, {
+          username,
+          password,
+        });
+        console.log("API call completed successfully");
+      } catch (axiosError) {
+        console.log("Inner axios call failed:", axiosError.message);
+        // Re-throw to be caught by the outer catch
+        throw axiosError;
+      }
 
       console.log("API response received:", response);
       console.log("Response status:", response.status);
@@ -52,21 +70,37 @@ export default function Login() {
       }
     } catch (error) {
       console.error("Login failed with error:", error);
+      console.error("Error name:", error.name);
+      console.error("Error message:", error.message);
 
-      if (error.response) {
+      // Check for network errors specifically
+      if (error.message.includes("Network Error")) {
+        console.error("NETWORK ERROR: The API server might not be running or accessible");
+        setErrorMessage("Network Error: Cannot connect to the server. Is it running?");
+      } else if (error.code === 'ECONNABORTED') {
+        console.error("TIMEOUT: The request took too long to complete");
+        setErrorMessage("Timeout: Server took too long to respond");
+      } else if (error.response) {
         // The request was made and the server responded with a status code
         console.error("Error response data:", error.response.data);
         console.error("Error response status:", error.response.status);
-        console.error("Error response headers:", error.response.headers);
+        setErrorMessage(`Server error (${error.response.status}): ${JSON.stringify(error.response.data)}`);
       } else if (error.request) {
         // The request was made but no response was received
         console.error("Error request (no response received):", error.request);
+        console.error("Request method:", error.request.method);
+        console.error("Request URL:", error.request.url);
+        setErrorMessage("Request failed: No response from server");
       } else {
         // Something happened in setting up the request
-        console.error("Error message:", error.message);
+        console.error("Unknown error in request setup");
+        setErrorMessage("Failed to set up request: " + error.message);
       }
 
-      setErrorMessage("Could not log in successfully. Please try again.");
+      // Log CORS information to help debug cross-origin issues
+      console.log("Checking for potential CORS issues...");
+      console.log("Current origin:", window.location.origin);
+      console.log("Target API:", "http://localhost:8080");
     }
   };
 
