@@ -2,7 +2,7 @@ const router = require('express').Router() // Import express and create a new ro
 
 const Service = require('../models/service') // Import the room model
 
-//POST - 'localhost:3000/api/services' - create a new service - Admin only
+//POST - 'localhost:8080/api/services' - create a new service - Admin only
 const createService = async (req, res) => {
   try {
     //get request body
@@ -27,12 +27,12 @@ const createService = async (req, res) => {
   } catch (error) {
     //return a 500 status code and an error message
     res.status(500).json({
-      Error: `${error.message} hala`
+      Error: error.message
     })
   }
 }
 
-//GET All - 'localhost:3000/api/services' - display all services - Any User
+//GET All - 'localhost:8080/api/services' - display all services - Any User
 const getAllServices = async (req, res) => {
   try {
     const services = await Service.find()
@@ -57,7 +57,7 @@ const getAllServices = async (req, res) => {
   }
 }
 
-//GET one - 'localhost:3000/api/services/:id' - display one service by ID - Any User
+//GET one - 'localhost:8080/api/services/:id' - display one service by ID - Any User
 const getServiceById = async (req, res) => {
   try {
     //get the service ID from the request params
@@ -84,7 +84,7 @@ const getServiceById = async (req, res) => {
   }
 }
 
-//GET one - 'localhost:3000/api/services/servicename/:name' - display one service by Name - Any User
+//GET one - 'localhost:8080/api/services/servicename/:name' - display one service by Name - Any User
 const getServiceByName = async (req, res) => {
   try {
     //get the service ID from the request params
@@ -111,7 +111,7 @@ const getServiceByName = async (req, res) => {
   }
 }
 
-//Update one - 'localhost:3000/api/services/:id' - update a service by ID - Any User
+//Update one - 'localhost:8080/api/services/:id' - update a service by ID - Any User
 const updateServiceById = async (req, res) => {
   try {
     console.log('I am in put')
@@ -138,7 +138,7 @@ const updateServiceById = async (req, res) => {
   }
 }
 
-//Delete one - 'localhost:3000/api/services/:id' - delete a service by ID - Any User
+//Delete one - 'localhost:8080/api/services/:id' - delete a service by ID - Any User
 const deleteServiceById = async (req, res) => {
   try {
     //get the service ID from the request params

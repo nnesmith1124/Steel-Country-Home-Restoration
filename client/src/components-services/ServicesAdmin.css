@@ -1,5 +1,5 @@
 .services-container {
-  margin: 3%;
+  padding: 3%;
   width: 95%;
   border-color: black;
   border-style: solid;
@@ -15,7 +15,7 @@
 
 th {
   border: 0.5px solid darkgray; /* Ensures visible border */
-  border-radius: 1rem;
+
 }
 .table-title {
   text-align: center;
@@ -46,4 +46,11 @@ th {
   display: flex;
   flex-direction: row-reverse;
   margin-bottom: 3rem;
+}
+
+.service-description {
+  max-height: 100px; /* Adjust based on your desired height */
+  overflow-y: auto;
+  padding-right: 10px; /* Optional: To prevent text from touching the scrollbar */
+  white-space: normal; /* Allows text to wrap within the cell */
 }

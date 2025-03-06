@@ -8,13 +8,15 @@ export default function Painting() {
   return (
     <div>
       <NavBar />
+      <div className="bg-[#A1B28E]">
       <br />
-      <h1 className="text-5xl font-bold text-center my-8">Painting</h1>
+      <h1 className="text-5xl font-bold text-center my-8 text-white">Painting</h1>
       <ServiceDisplay serviceName="Painting" />
 
       <p>
         <br />
       </p>
+      </div>
       <Footer />
     </div>
   );

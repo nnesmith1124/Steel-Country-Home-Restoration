@@ -17,7 +17,7 @@ export default function NavBar() {
             <a href="/" className="flex items-center gap-2">
               <FaHome className="text-white w-6 h-6 mr-3" />
               <h1 className="text-white text-xl font-bold">
-                Steel Country Home Restoration
+                Rustic Oak Home Restoration
               </h1>
             </a>
           </div>
@@ -37,8 +37,9 @@ export default function NavBar() {
 
             {/* Navigation Links */}
             <ul
-              className={`lg:flex items-center space-x-6 text-white absolute lg:relative top-16 lg:top-0 right-0 w-full lg:w-auto bg-[#4C7A5B] lg:bg-transparent p-4 lg:p-0 shadow-lg lg:shadow-none transition-all duration-300 ease-in-out ${menuOpen ? "block" : "hidden"
-                }`}
+              className={`lg:flex items-center space-x-6 text-white absolute lg:relative top-16 lg:top-0 right-0 w-full lg:w-auto bg-[#4C7A5B] lg:bg-transparent p-4 lg:p-0 shadow-lg lg:shadow-none transition-all duration-300 ease-in-out ${
+                menuOpen ? "block" : "hidden"
+              }`}
             >
               {/* Services Dropdown */}
               <li
@@ -62,10 +63,11 @@ export default function NavBar() {
                 {/* Dropdown Menu */}
                 <div
                   className={`lg:absolute lg:left-0 lg:mt-1 lg:w-40 w-fit bg-white text-black shadow-lg rounded-md transition-opacity duration-200 
-                  ${dropdownOpen
+                  ${
+                    dropdownOpen
                       ? "opacity-100 visible pointer-events-auto"
                       : "opacity-0 invisible pointer-events-none"
-                    }`}
+                  }`}
                   onMouseLeave={() => {
                     if (!menuOpen) {
                       setDropdownOpen(false); // Hide dropdown when mouse leaves for desktop

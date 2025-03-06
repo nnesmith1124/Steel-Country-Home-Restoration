@@ -11,13 +11,13 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4 flex items-center">
-              <FaHome className="mr-2" /> Steel Country Home Restoration
+              <FaHome className="mr-2" /> Rustic Oak Home Restoration
             </h3>
             <p className="mb-4 text-gray-200">
               Quality home restoration services you can trust. We take pride in our workmanship and customer satisfaction.
             </p>
             <div className="flex space-x-4 mt-4">
-              <a href="https://www.facebook.com/people/Steel-Country-Home-Restorations/61569069813941/"
+              <a href="https://www.facebook.com"
                 className="transition-all hover:text-blue-400 hover:scale-110"
                 aria-label="Facebook">
                 <FaFacebook className="text-2xl" />
@@ -94,7 +94,7 @@ export default function Footer() {
       {/* Copyright Bar */}
       <div className="bg-[#3a5e45] py-4">
         <div className="container mx-auto px-6 text-center text-sm">
-          <p>© {new Date().getFullYear()} Steel Country Home Restoration. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Rusitc Oak Home Restoration. All rights reserved.</p>
         </div>
       </div>
     </footer>

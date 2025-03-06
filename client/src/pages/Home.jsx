@@ -3,7 +3,7 @@ import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 import Slideshow from "../Components/Slideshow";
 
-const HERO_IMAGE = "../assets/cover-photo.png";
+const HERO_IMAGE = "../assets/new-cover-photo.png";
 
 const testimoials = [
   {
@@ -32,17 +32,17 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />
-
+    <div className="bd-[#A1B28E]">
       {/* Hero Section with Cover Photo */}
       <div className="relative">
         <img
           className="w-full h-auto object-cover"
           src={HERO_IMAGE}
-          alt="Steel Country Home Restoration"
+          alt="Rustic Oak Home Restoration"
         />
         <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center">
           <div className="text-center text-white p-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Quality Home Restoration</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-[#4C7A5B] p-2 rounded-lg">Quality Home Restoration</h1>
             <p className="text-xl md:text-2xl mb-6">Professional services for your home improvement needs</p>
             <a
               href="/contact"
@@ -55,10 +55,10 @@ export default function Home() {
       </div>
 
       {/* Services Section */}
-      <section className="py-12 px-6 md:px-12 lg:px-24 bg-gray-50">
-        <h2 className="text-4xl font-bold text-center mb-8">Our Services</h2>
+      <section className="py-12 px-6 md:px-12 lg:px-24 bg-[#A1B28E]">
+        <h2 className="text-4xl font-bold text-center mb-8 text-[#4C7A5B]">Our Services</h2>
         <div className="max-w-4xl mx-auto">
-          <p className="text-lg text-gray-700 text-center mb-8">
+          <p className="text-lg text-white text-center mb-8">
             Offering roofing, drywall, painting, pressure washing, gutters, soffit,
             fascia, interior renovations, and roofing repairs. Complimentary
             inspections, insurance claim help, and flexible financing available.
@@ -82,13 +82,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tips Section */}
-      <section className="py-12 px-6 md:px-12 lg:px-24">
-        <h2 className="text-4xl font-bold text-center mb-8">Helpful Tips</h2>
-        <div className="max-w-4xl mx-auto">
-          <Slideshow />
-        </div>
-      </section>
+    
 
       {/* Call to Action */}
       <section className="py-12 px-6 md:px-12 bg-[#4C7A5B] text-white text-center">
@@ -105,8 +99,8 @@ export default function Home() {
       </section>
 
       {/* Testimonials*/}
-      <section className="py-12 px-6 md:px-12 lg:px-24 bg-gray-50">
-        <h2 className="text-4xl font-bold text-center mb-8">Customer Testimonials</h2>
+      <section className="py-12 px-6 md:px-12 lg:px-24 bg-[#A1B28E]">
+        <h2 className="text-4xl font-bold text-center mb-8 text-[#4C7A5B]">Customer Testimonials</h2>
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {testimoials.map((testimonial) => (
@@ -121,6 +115,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </div>
       <Footer />
     </div>
   );

@@ -7,15 +7,16 @@ export default function About() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <NavBar />
+      <div className="bg-[#A1B28E]">
 
       {/* Hero Section */}
       <div className="relative">
         <img
           className="w-full h-64 md:h-96 object-cover"
-          src="../assets/cover-photo.png"
-          alt="Steel Country Home Restoration"
+          src="../assets/new-cover-photo.png"
+          alt="Rustic Oak Home Restoration"
         />
-        <div className="absolute inset-0 bg-[#A1B28E] bg-opacity-50 flex items-center justify-center">
+        <div className="absolute inset-0 bg-opacity-50 flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">About Us</h1>
         </div>
       </div>
@@ -25,9 +26,9 @@ export default function About() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center text-3xl font-bold text-[#4C7A5B] mb-4">
             <FaHome className="mr-3" />
-            <h2>Welcome to Steel Country Home Restorations</h2>
+            <h2>Welcome to Rustic Oak Home Restorations</h2>
           </div>
-          <p className="text-lg text-gray-700 max-w-4xl mx-auto">
+          <p className="text-lg text-white max-w-4xl mx-auto">
             We're dedicated to restoring and enhancing your home with top-quality services that you can trust.
             Serving all of South Texas, including San Antonio, Corpus Christi, and the Rio Grande Valley.
           </p>
@@ -41,7 +42,7 @@ export default function About() {
             </div>
             <div className="p-6 text-gray-700">
               <p className="mb-4">
-                At Steel Country Home Restorations, we are dedicated to restoring and
+                At Rustic Oak Home Restorations, we are dedicated to restoring and
                 enhancing your home with top-quality services that you can trust.
                 Located in Cibolo, TX, we proudly serve all of South Texas, including
                 San Antonio, Corpus Christi, the Rio Grande Valley, and surrounding
@@ -88,7 +89,7 @@ export default function About() {
 
         {/* Why Choose Us */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-16">
-          <h3 className="text-3xl font-bold text-center text-[#4C7A5B] mb-8">Why Choose Steel Country?</h3>
+          <h3 className="text-3xl font-bold text-center text-[#4C7A5B] mb-8">Why Choose Rustic Oak?</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center p-4">
               <div className="bg-[#4C7A5B] text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
@@ -109,7 +110,7 @@ export default function About() {
                 <FaCheck className="text-xl" />
               </div>
               <h4 className="text-xl font-semibold mb-2">Peace of Mind</h4>
-              <p className="text-gray-600">With Steel Country, you can relax knowing that your home is in good hands.</p>
+              <p className="text-gray-600">With Rustic Oak, you can relax knowing that your home is in good hands.</p>
             </div>
           </div>
         </div>
@@ -151,7 +152,7 @@ export default function About() {
           </div>
         </div>
       </div>
-
+      </div>
       <Footer />
     </div>
   );
