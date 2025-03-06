@@ -8,13 +8,16 @@ export default function Gutters() {
   return (
     <div>
       <NavBar />
+      <div className="bg-[#A1B28E]">
       <br />
-      <h1 className="text-5xl font-bold text-center my-8">Gutters</h1>
+      <h1 className="text-5xl font-bold text-center my-8 text-white">Gutters</h1>
 
       <ServiceDisplay serviceName="Gutters" />
       <p>
         <br />
       </p>
+      
+      </div>
       <Footer />
     </div>
   );

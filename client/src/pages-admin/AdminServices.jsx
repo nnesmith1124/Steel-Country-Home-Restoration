@@ -33,9 +33,7 @@ export default function AdminServices() {
       )}
 
       <ServicesAdmin />
-      <p>
-        <br />
-      </p>
+      
       <Footer />
     </div>
   );

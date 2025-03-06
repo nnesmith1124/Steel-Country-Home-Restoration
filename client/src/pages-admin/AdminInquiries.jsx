@@ -7,9 +7,7 @@ export default function AdminInquiries() {
     <div>
       <NavBarAdmin />
       <h1>Admin Inquiries Page</h1>
-      <p>
-        <br />
-      </p>
+     
       <Footer />
     </div>
   );
